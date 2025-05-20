@@ -21,10 +21,12 @@ export const passwordReset = async (req: Request, res: Response) => {
     sendUserVerificationLink(
       `${req.protocol}://${req.get(
         "host"
-      )}/auth/reset-verify?token=${newToken}`,
+      )}/auth/resset-password?token=${newToken}`,
       email
     );
-    res.status(200).send({ message: "Сэргээх холбоос амжилттай илгээгдлээ" });
+    res
+      .status(200)
+      .send({ message: "Сэргээх холбоос амжилттай илгээгдлээ", newToken });
   } catch (error) {
     res.status(500).send({ message: "Серверийн алдаа", error });
   }

@@ -1,6 +1,6 @@
 import { Schema, model, Model, models } from "mongoose";
 
-enum UserEnum {
+export enum UserEnum {
   ADMIN = "Admin",
   USER = "User",
 }

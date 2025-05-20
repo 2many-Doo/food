@@ -26,7 +26,7 @@ export const verifyPassword = async (req: Request, res: Response) => {
       return;
     }
 
-    res.redirect(`${process.env.FRONTEND_ENDPOINT}/reset-password`);
+    res.redirect(`${process.env.FRONTEND_ENDPOINT}/resset-password`);
   } catch (error) {
     res.status(500).send({ message: "Серверийн алдаа" });
   }

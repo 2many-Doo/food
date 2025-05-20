@@ -6,12 +6,13 @@ import {
   verifyPassword,
   verifyUserController,
 } from "../controllers";
+import { ChangePassword } from "../controllers/auth/change-password.controller";
 
 export const authRouter = Router();
 
 authRouter.post("/sign-up", signupController);
 authRouter.get("/verify-user", verifyUserController);
 authRouter.post("/login", signinController);
-authRouter.post("/send-email-for-reset-password", passwordReset);
-
-authRouter.get("/verify-email", verifyPassword);
+authRouter.get("/send-reset-email", passwordReset);
+authRouter.post("/resset-password", verifyPassword);
+authRouter.post("/resset-password", ChangePassword);
