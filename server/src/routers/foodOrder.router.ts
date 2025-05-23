@@ -8,3 +8,4 @@ export const foodOrderRouter = Router();
 foodOrderRouter
   .route("/")
   .post(athenticateUser, authorization(UserEnum.ADMIN), FoodOrderController);
+foodOrderRouter.route("/").get(FoodOrderController);

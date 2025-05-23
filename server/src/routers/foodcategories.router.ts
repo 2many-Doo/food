@@ -2,10 +2,11 @@ import { Router } from "express";
 import {
   FoodCategoryController,
   updateFoodCategory,
+  deleteFoodCategory,
+  getAllFoodCategories,
 } from "../controllers/food-category";
 import { athenticateUser, authorization } from "../middlewares";
 import { UserEnum } from "../models";
-import { deleteFoodCategory } from "../controllers/food-category/deleted-category.controller";
 
 export const foodcategoriesRouter = Router();
 
@@ -18,3 +19,6 @@ foodcategoriesRouter
 foodcategoriesRouter
   .route("/:id")
   .delete(athenticateUser, authorization(UserEnum.ADMIN), deleteFoodCategory);
+foodcategoriesRouter
+  .route("/:id")
+  .get(athenticateUser, authorization(UserEnum.ADMIN), getAllFoodCategories);

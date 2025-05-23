@@ -10,7 +10,7 @@ export const signinController = async (req: Request, res: Response) => {
   const existingUser = await UserModel.findOne({ email });
 
   if (!existingUser || !password) {
-    res.status(400).send({ message: "Хэрэглэгч эсвэл нууц үг буруу" });
+    res.status(400).send({ message: "Бүртгэлгүй хэрэглэгч" });
     return;
   }
 

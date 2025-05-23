@@ -29,6 +29,7 @@ export const updateFoodCategory = async (req: Request, res: Response) => {
     }
 
     category.categoryName = categoryName;
+    await category.save();
 
     res.status(200).json({ message: "Category updated", category });
     return;

@@ -5,8 +5,8 @@ import {
   signupController,
   verifyPassword,
   verifyUserController,
+  ChangePassword,
 } from "../controllers";
-import { ChangePassword } from "../controllers/auth/change-password.controller";
 
 export const authRouter = Router();
 

@@ -4,8 +4,6 @@ export const connecDatabase = async () => {
   try {
     const dbConnectString = process.env.MONGODB_CONNECT_STRING;
 
-    // console.log("🔍 DB STRING:", dbConnectString); // шалгах log
-
     if (!dbConnectString) {
       throw new Error("❌ MONGODB_CONNECT_STRING is undefined");
     }
