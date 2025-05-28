@@ -6,7 +6,7 @@ import {
   updatedFoodController,
 } from "../controllers";
 import { athenticateUser, authorization } from "../middlewares";
-import { UserEnum } from "../models";
+import { Food, UserEnum } from "../models";
 
 export const foodRouter = Router();
 
@@ -22,3 +22,7 @@ foodRouter
 foodRouter
   .route("/:id")
   .get(athenticateUser, authorization(UserEnum.ADMIN), getFoodById);
+foodRouter.get("/", async (req, res) => {
+  const foods = await Food.find(); // or .populate("category")
+  res.send(foods);
+});

@@ -4,15 +4,17 @@ import { Request, Response } from "express";
 type FoodType = {
   foodName: string;
   image: string;
+  price: string;
   ingredients: string;
   category: string;
 };
 
 export const FoodController = async (req: Request, res: Response) => {
   try {
-    const { foodName, image, ingredients, category } = req.body as FoodType;
+    const { foodName, image, ingredients, category, price } =
+      req.body as FoodType;
 
-    if (!foodName || !image || !ingredients || !category) {
+    if (!foodName || !image || !ingredients || !category || !price) {
       res.status(400).send({ message: "Бүх талбарыг бөглөнө үү" });
       return;
     }
@@ -26,6 +28,7 @@ export const FoodController = async (req: Request, res: Response) => {
     const newFood = await Food.create({
       foodName,
       image,
+      price,
       ingredients,
       category,
     });

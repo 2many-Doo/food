@@ -6,7 +6,7 @@ import {
   getAllFoodCategories,
 } from "../controllers/food-category";
 import { athenticateUser, authorization } from "../middlewares";
-import { UserEnum } from "../models";
+import { FoodCategory, UserEnum } from "../models";
 
 export const foodcategoriesRouter = Router();
 
@@ -22,3 +22,11 @@ foodcategoriesRouter
 foodcategoriesRouter
   .route("/:id")
   .get(athenticateUser, authorization(UserEnum.ADMIN), getAllFoodCategories);
+foodcategoriesRouter.get("/", async (req, res) => {
+  try {
+    const categories = await FoodCategory.find();
+    res.json(categories);
+  } catch (error) {
+    res.status(500).json({ message: "Алдаа", error });
+  }
+});

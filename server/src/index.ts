@@ -5,12 +5,14 @@ import { authRouter } from "./routers/auth.router";
 import { foodcategoriesRouter } from "./routers/foodcategories.router";
 import { foodRouter } from "./routers/food.router";
 import { foodOrderRouter } from "./routers/foodOrder.router";
+import cors from "cors";
+
 const app = express();
 
 configDotenv();
 
 connecDatabase();
-
+app.use(cors());
 const port = 8000;
 app.use(express.json());
 app.use("/auth", authRouter);
