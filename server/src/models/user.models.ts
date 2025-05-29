@@ -27,7 +27,7 @@ const UserSchema = new Schema<Usertype>(
     role: {
       type: String,
       enum: Object.values(UserEnum),
-      default: UserEnum.ADMIN,
+      default: UserEnum.USER,
     },
     ttl: { type: Date, default: Date.now() + 24 * 60 * 60 * 1000 },
   },

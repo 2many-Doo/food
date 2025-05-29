@@ -3,7 +3,7 @@
 import axios from "axios";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 
 type Props = {
@@ -14,6 +14,7 @@ type Props = {
 export const AddFood = ({ onSuccess, onCancel }: Props) => {
   const [message, setMessage] = useState("");
   const formRef = useRef<HTMLDivElement>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -37,10 +38,19 @@ export const AddFood = ({ onSuccess, onCancel }: Props) => {
     category: Yup.string().required("Категори ID шаардлагатай"),
   });
 
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = Array.from(event.target.files as FileList)[0];
+    setSelectedFile(file);
+  };
+
+  const handleSubmit = () => {
+    const from = new FormData();
+  };
+
   return (
     <div
       ref={formRef}
-      className="border rounded-xl p-5 mt-8 bg-gray-50 shadow w-[600px] mx-auto absolute"
+      className="border rounded-xl p-5 mt-8 bg-gray-50 shadow w-[600px] mx-auto "
     >
       <p className="text-xl font-semibold mb-4">Хоол нэмэх</p>
 
@@ -78,64 +88,69 @@ export const AddFood = ({ onSuccess, onCancel }: Props) => {
       >
         {({ errors, touched }) => (
           <Form className="flex flex-col gap-4">
+            <div className="flex justify-between">
+              <div>
+                <p>Food name</p>
+                <Field
+                  name="foodName"
+                  placeholder="Type food name"
+                  className="border p-2 rounded"
+                />
+                {touched.foodName && errors.foodName && (
+                  <div className="text-red-500">{errors.foodName}</div>
+                )}
+              </div>
+              <div>
+                <p>Food price</p>
+                <Field
+                  name="price"
+                  placeholder="Enter price..."
+                  className="border p-2 rounded"
+                />
+                {touched.price && errors.price && (
+                  <div className="text-red-500">{errors.price}</div>
+                )}
+              </div>
+            </div>
+            <p>Ingredients</p>
             <Field
-              name="foodName"
-              placeholder="Хоолны нэр"
-              className="border p-2 rounded"
+              name="ingredients"
+              placeholder="List ingredients..."
+              className="border pb-15 rounded"
             />
-            {touched.foodName && errors.foodName && (
-              <div className="text-red-500">{errors.foodName}</div>
+            {touched.ingredients && errors.ingredients && (
+              <div className="text-red-500">{errors.ingredients}</div>
             )}
-
-            <Field
-              name="price"
-              placeholder="Үнэ"
-              className="border p-2 rounded"
-            />
-            {touched.price && errors.price && (
-              <div className="text-red-500">{errors.price}</div>
-            )}
-
-            <Field
-              name="image"
-              placeholder="Зургийн URL"
-              className="border p-2 rounded"
+            <input
+              type="file"
+              className="p-16 border border-dashed border-blue-400 bg-[#f4f7ff]"
             />
             {touched.image && errors.image && (
               <div className="text-red-500">{errors.image}</div>
             )}
 
-            <Field
-              name="ingredients"
-              placeholder="Орц"
-              className="border p-2 rounded"
-            />
-            {touched.ingredients && errors.ingredients && (
-              <div className="text-red-500">{errors.ingredients}</div>
-            )}
-
-            <Field
+            {/* <Field
               name="category"
               placeholder="Категорийн ID"
               className="border p-2 rounded"
             />
             {touched.category && errors.category && (
               <div className="text-red-500">{errors.category}</div>
-            )}
+            )} */}
 
             <div className="flex gap-4">
               <button
                 type="submit"
-                className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+                className="bg-black  text-white py-2 px-4 ml-auto rounded hover:bg-blue-700"
               >
-                Нэмэх
+                Add Dish
               </button>
 
               {onCancel && (
                 <button
                   type="button"
                   onClick={onCancel}
-                  className=" hover:text-black p-2 rounded-full absolute top-4 right-4 bg-gray-300"
+                  className=" hover:text-black p-2 rounded-full absolute top-12 right-4 bg-gray-300"
                 >
                   <X />
                 </button>

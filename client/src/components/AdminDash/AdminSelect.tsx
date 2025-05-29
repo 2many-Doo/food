@@ -7,7 +7,7 @@ import { QrCode } from "lucide-react";
 export const AdminSelect = () => {
   return (
     <div className=" flex flex-col w-51 h-screen gap-10  pt-9 items-center bg-white">
-      <div className="flex gap-2 ">
+      <div className="flex gap-2">
         <Image width={36} height={36} alt="logo" src="/image/logo.svg" />
         <div>
           <p className="font-semibold">NomNom</p>
@@ -19,7 +19,7 @@ export const AdminSelect = () => {
           <QrCode />
           Food menu
         </Button>
-        <div className="flex gap-4 items-center px-4 py-2 rounded-md">
+        <div className="flex gap-4 items-center px-4 py-2 bg-amber-200 rounded-md">
           <Image width={36} height={15} alt="vector" src="/image/Vector.png" />
           <p>Order</p>
         </div>

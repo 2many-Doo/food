@@ -21,7 +21,7 @@ export const AddCategory = ({ onSuccess, onCancel }: Props) => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (formRef.current && !formRef.current.contains(event.target as Node)) {
-        onCancel?.(); // гадна талаас дарсан бол цуцлах
+        onCancel?.();
       }
     };
 
